@@ -126,3 +126,7 @@ It is very similar to modman but you need to tell magento the type, if it is a f
 
 
 `path` is the path to your source files.
+
+History
+=======
+This script was developed first within [https://github.com/Flagbit/Magento-FilterUrls].

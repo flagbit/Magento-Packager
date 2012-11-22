@@ -1,4 +1,6 @@
 .modgit/
+.idea/
+nbproject/
 app/code/community/Find/
 app/code/community/Phoenix/
 app/code/core/
@@ -82,7 +84,6 @@ media/downloadable/
 media/.htaccess
 media/import/
 media/xmlconnect/
-nbproject/
 pear
 pear/
 php.ini.sample

@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the Flagbit_FilterUrls project.
+ * This file is part of the Flagbit_Packager project.
  *
  * Flagbit_FilterUrls is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License version 3 as
@@ -12,8 +12,8 @@
  *
  * PHP version 5
  *
- * @category Flagbit_FilterUrls
- * @package Flagbit_FilterUrls
+ * @category Flagbit_Packager
+ * @package Flagbit_FPackager
  * @author Karl Spies <karl.spies@flagbit.de>
  * @copyright 2012 Flagbit GmbH & Co. KG (http://www.flagbit.de). All rights served.
  * @license http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
@@ -23,8 +23,8 @@
 /**
  * Packager script to build a magento connect 2.0 packages.
  *
- * @category Flagbit_FilterUrls
- * @package Flagbit_FilterUrls
+ * @category Flagbit_Packager
+ * @package Flagbit_Packager
  * @author Karl Spies <karl.spies@flagbit.de>
  * @copyright 2012 Flagbit GmbH & Co. KG (http://www.flagbit.de). All rights served.
  * @license http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
@@ -263,10 +263,10 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
     {
         return <<<USAGE
 Usage:  php -f packager.php -- [options]
-        php -f packager.php --composer
+        php -f packager.php --composer <path to composer>
 
-  composer              Create the package out of composer.json
-  help                  This help
+  composer  Create the package out of composer.json
+  help      This help
 
 USAGE;
     }

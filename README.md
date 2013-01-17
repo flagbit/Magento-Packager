@@ -98,7 +98,7 @@ The minimum required version for PHP
 ### magento_connect php_max
 The maximum support version of PHP
 
-### mmagento_connect stability
+### magento_connect stability
 Please use some key from [http://getcomposer.org/doc/04-schema.md#minimum-stability]
 
 ### magento_connect content

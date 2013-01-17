@@ -28,7 +28,6 @@ Example
         "license":"GPL-3.0",
         "description":"",
         "homepage":"http://example.com",
-        "minimum-stability":"beta",
         "authors":[
             {
                 "name":"Author 1",
@@ -39,11 +38,12 @@ Example
                 "email":"author2@example.de"
             }
         ],
-        "extras":{
+        "extra":{
             "magento_connect":{
                 "channel":"community",
                 "php_min":"5.3.0",
                 "php_max":"6.0.0",
+                "stability":"beta",
                 "content":[
                     {
                         "type":"magecommunity",
@@ -86,9 +86,6 @@ A detailed description of you module. It will be used as description and summery
 ### homepage
 Nothing more to say
 
-### minimum-stability
-Please use some key from [http://getcomposer.org/doc/04-schema.md#minimum-stability]
-
 ### authors
 Who developed the module
 
@@ -100,6 +97,9 @@ The minimum required version for PHP
 
 ### magento_connect php_max
 The maximum support version of PHP
+
+### mmagento_connect stability
+Please use some key from [http://getcomposer.org/doc/04-schema.md#minimum-stability]
 
 ### magento_connect content
 Most complicated part of the config file. You need to tell the packager which files you want to put where in the archive.

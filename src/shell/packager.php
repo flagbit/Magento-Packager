@@ -171,10 +171,26 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
     public function getContent()
     {
         $contents = array("target" => array(), "type" => array(), "path" => array());
+        $i = 1;
         foreach ($this->getComposerJson()->extra->magento_connect->content as $element) {
-            $contents["target"][$element->type] = $element->type;
-            $contents["type"][$element->type] = $element->structure;
-            $contents["path"][$element->type] = $element->path;
+
+            $include = null;
+            if(isset($element->include)) {
+                $include = $element->include;
+            }
+
+            $ignore = null;
+            if(isset($element->ignore)) {
+                $ignore = $element->ignore;
+            }
+
+            $contents["target"][$i] = $element->type;
+            $contents["type"][$i] = $element->structure;
+            $contents["path"][$i] = $element->path;
+            $contents["include"][$i] = $include;
+            $contents["ignore"][$i] = $ignore;
+
+            $i++;
         }
         return $contents;
     }

@@ -62,7 +62,7 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
                 $this->getConfig()->setData('channel', $this->getChannel());
                 $this->getConfig()->setData('license', $this->getLicense());
                 $this->getConfig()->setData('license_uri', $this->getLicenseUri());
-                $this->getConfig()->setData('summary', $this->getDescription());
+                $this->getConfig()->setData('summary', $this->getSummary());
                 $this->getConfig()->setData('description', $this->getDescription());
                 $this->getConfig()->setData('version', (string)Mage::getConfig()->getNode()->modules->$name->version);
                 $this->getConfig()->setData('stability', $this->getStability());
@@ -196,7 +196,23 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
      */
     public function getLicenseUri()
     {
+        if(isset($this->getComposerJson()->extra->magento_connect->license_uri)) {
+            return $this->getComposerJson()->extra->magento_connect->license_uri;
+        }
         return "http://www.spdx.org/licenses/" . $this->getLicense();
+    }
+
+    /**
+     * Get the summary for the project. Falls back to description if summary is not explicitly set.
+     * @return mixed
+     */
+    public function getSummary()
+    {
+        if(isset($this->getComposerJson()->extra->magento_connect->summary)) {
+            return $this->getComposerJson()->extra->magento_connect->summary;
+        }
+
+        return $this->getDescription();
     }
 
     /**

@@ -40,6 +40,8 @@ Example
         ],
         "extra":{
             "magento_connect":{
+                "license_uri":"http://www.gnu.org/licenses/gpl-3.0.html",
+                "summary":"",
                 "channel":"community",
                 "php_min":"5.3.0",
                 "php_max":"6.0.0",
@@ -78,16 +80,22 @@ If you would like to install extensions via [composer magento installer](https:/
 you should use `magento-module`. The packager ignore this property.
 
 ### license
-Please use some key from [http://www.spdx.org/licenses/].
+The name of the license the package is covered by. Will also be used as a key from [http://www.spdx.org/licenses/], if an explicit URI is not provided in the `magento_connect` options.
 
 ### description
-A detailed description of you module. It will be used as description and summery.
+A detailed description of you module. It will be used as description and the summary, if an explicit summary is not provided in the `magento_connect` options.
 
 ### homepage
 Nothing more to say
 
 ### authors
 Who developed the module
+
+### magento_connect license_uri
+URI for a copy of the license text. If no value is provided the URI will default to using the value of `license` as a key from [http://www.spdx.org/licenses/].
+
+### magento_connect summary
+A brief summary of your module. If no value is provided then the `description` will be used.
 
 ### magento_connect channel
 Which channel should be used in magento connect.
@@ -98,7 +106,7 @@ The minimum required version for PHP
 ### magento_connect php_max
 The maximum support version of PHP
 
-### mmagento_connect stability
+### magento_connect stability
 Please use some key from [http://getcomposer.org/doc/04-schema.md#minimum-stability]
 
 ### magento_connect content

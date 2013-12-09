@@ -91,6 +91,9 @@ Nothing more to say
 ### authors
 Who developed the module
 
+### magento_connect name [optional]
+The package name, usually NameSpace_ModuleName. Must be identical to the Module Name. Use this if automatic generation fails because you have uppercase letters in the middle of the Namespace and/or Module Name.
+
 ### magento_connect license_uri
 URI for a copy of the license text. If no value is provided the URI will default to using the value of `license` as a key from [http://www.spdx.org/licenses/].
 

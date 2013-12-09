@@ -132,8 +132,11 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
      */
     public function getModuleName()
     {
-        $name = $this->getComposerJson()->name;
-        $name = join('_', array_map('ucfirst', explode('/', $name)));
+        $name = $this->getComposerJson()->extra->magento_connect->name;
+        if (!$name) {
+            $name = $this->getComposerJson()->name;
+            $name = join('_', array_map('ucfirst', explode('/', $name)));
+        }
         return $name;
     }
 

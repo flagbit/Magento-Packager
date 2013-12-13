@@ -96,8 +96,12 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
     public function getComposerJson()
     {
         if ($this->_composer == null) {
-            $fileContent = file_get_contents($this->getPathToComposerJSON());
-            $this->_composer = Zend_Json::decode($fileContent, Zend_Json::TYPE_OBJECT);
+            if($this->getPathToComposerJSON() && is_readable($this->getPathToComposerJSON())) {
+                $fileContent = file_get_contents($this->getPathToComposerJSON());
+                $this->_composer = Zend_Json::decode($fileContent, Zend_Json::TYPE_OBJECT);
+            } else {
+                Mage::throwException('Composer file cannot be read.');
+            }
         }
         return $this->_composer;
     }

@@ -62,7 +62,7 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
                 $this->getConfig()->setData('channel', $this->getChannel());
                 $this->getConfig()->setData('license', $this->getLicense());
                 $this->getConfig()->setData('license_uri', $this->getLicenseUri());
-                $this->getConfig()->setData('summary', $this->getDescription());
+                $this->getConfig()->setData('summary', $this->getSummary());
                 $this->getConfig()->setData('description', $this->getDescription());
                 $this->getConfig()->setData('version', (string)Mage::getConfig()->getNode()->modules->$name->version);
                 $this->getConfig()->setData('stability', $this->getStability());
@@ -96,8 +96,12 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
     public function getComposerJson()
     {
         if ($this->_composer == null) {
-            $fileContent = file_get_contents($this->getPathToComposerJSON());
-            $this->_composer = Zend_Json::decode($fileContent, Zend_Json::TYPE_OBJECT);
+            if($this->getPathToComposerJSON() && is_readable($this->getPathToComposerJSON())) {
+                $fileContent = file_get_contents($this->getPathToComposerJSON());
+                $this->_composer = Zend_Json::decode($fileContent, Zend_Json::TYPE_OBJECT);
+            } else {
+                Mage::throwException('Composer file cannot be read.');
+            }
         }
         return $this->_composer;
     }
@@ -132,8 +136,11 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
      */
     public function getModuleName()
     {
-        $name = $this->getComposerJson()->name;
-        $name = join('_', array_map('ucfirst', explode('/', $name)));
+        $name = $this->getComposerJson()->extra->magento_connect->name;
+        if (!$name) {
+            $name = $this->getComposerJson()->name;
+            $name = join('_', array_map('ucfirst', explode('/', $name)));
+        }
         return $name;
     }
 
@@ -171,10 +178,26 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
     public function getContent()
     {
         $contents = array("target" => array(), "type" => array(), "path" => array());
+        $i = 1;
         foreach ($this->getComposerJson()->extra->magento_connect->content as $element) {
-            $contents["target"][$element->type] = $element->type;
-            $contents["type"][$element->type] = $element->structure;
-            $contents["path"][$element->type] = $element->path;
+
+            $include = null;
+            if(isset($element->include)) {
+                $include = $element->include;
+            }
+
+            $ignore = null;
+            if(isset($element->ignore)) {
+                $ignore = $element->ignore;
+            }
+
+            $contents["target"][$i] = $element->type;
+            $contents["type"][$i] = $element->structure;
+            $contents["path"][$i] = $element->path;
+            $contents["include"][$i] = $include;
+            $contents["ignore"][$i] = $ignore;
+
+            $i++;
         }
         return $contents;
     }
@@ -196,7 +219,23 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
      */
     public function getLicenseUri()
     {
+        if(isset($this->getComposerJson()->extra->magento_connect->license_uri)) {
+            return $this->getComposerJson()->extra->magento_connect->license_uri;
+        }
         return "http://www.spdx.org/licenses/" . $this->getLicense();
+    }
+
+    /**
+     * Get the summary for the project. Falls back to description if summary is not explicitly set.
+     * @return mixed
+     */
+    public function getSummary()
+    {
+        if(isset($this->getComposerJson()->extra->magento_connect->summary)) {
+            return $this->getComposerJson()->extra->magento_connect->summary;
+        }
+
+        return $this->getDescription();
     }
 
     /**

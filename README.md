@@ -61,6 +61,12 @@ Example
                         "type":"mage",
                         "structure":"file",
                         "path":"just a random file path"
+                    },
+                    {
+                        "type":"magelib",
+                        "structure":"dir",
+                        "path":"SomeNamespace",
+                        "from":"vendor/foo/bar/src/SomeNamespace"
                     }
                 ]
             }
@@ -137,6 +143,9 @@ It is very similar to modman but you need to tell magento the type, if it is a f
 
 
 `path` is the path to your source files.
+
+If you want to include an external library in your package, but on your machine it's located in another path (because
+it is a dependency installed via composer), you may specify the real path `from`.
 
 History
 =======

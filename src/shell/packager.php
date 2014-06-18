@@ -191,6 +191,14 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
                 $ignore = $element->ignore;
             }
 
+            if(isset($element->from)) {
+                $mageTargets = new Mage_Connect_Package_Target();
+                $targetMap = $mageTargets->getTargets();
+
+                $link = BP . DS . $targetMap[$element->type] . DS . $element->path;
+                symlink(BP . DS . $element->from, $link);
+            }
+
             $contents["target"][$i] = $element->type;
             $contents["type"][$i] = $element->structure;
             $contents["path"][$i] = $element->path;

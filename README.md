@@ -15,7 +15,7 @@ Guide to use this script
 
 1.  install the script with modman `modman clone git@github.com:Flagbit/Magento-Packager.git`
 2.  go to <path to magento>/shell
-3.  run php packager.php --composer <path to your composer.json file>
+3.  run `php packager.php --composer <path to your composer.json file>`
 
 Guide to create a composer.json
 ===============================
@@ -72,8 +72,8 @@ Elements
 --------
 
 ### name
-The name of the module in magento style notation. Something like `flagbit/packager`. It should be writen
-everything in lowser first letter case.
+The name of the module in magento style notation. Something like `flagbit/packager`. It should be written
+everything in lower first letter case.
 
 ### type
 If you would like to install extensions via [composer magento installer](https://github.com/magento-hackathon/magento-composer-installer)

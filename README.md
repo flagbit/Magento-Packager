@@ -42,6 +42,7 @@ Example
             "magento_connect":{
                 "license_uri":"http://www.gnu.org/licenses/gpl-3.0.html",
                 "summary":"",
+                "notes":"",
                 "channel":"community",
                 "php_min":"5.3.0",
                 "php_max":"6.0.0",
@@ -99,6 +100,9 @@ URI for a copy of the license text. If no value is provided the URI will default
 
 ### magento_connect summary
 A brief summary of your module. If no value is provided then the `description` will be used.
+
+### magento_connect notes
+Notes related to the current release.
 
 ### magento_connect channel
 Which channel should be used in magento connect.

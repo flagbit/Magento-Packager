@@ -24,6 +24,8 @@
             "php_min":"5.3.0",
             "php_max":"6.0.0",
     	    "stability":"beta",
+    	    "summary":"",
+    	    "notes":"",
             "content":[
                 {
                     "type":"magecommunity",

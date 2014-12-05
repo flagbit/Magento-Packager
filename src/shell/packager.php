@@ -59,6 +59,7 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
                 $this->_pathToComposerJson = $this->getArg('composer');
                 $name = $this->getModuleName();
                 $this->getConfig()->setData('name', $name);
+                $this->getConfig()->setData('notes', $this->getNotes());
                 $this->getConfig()->setData('channel', $this->getChannel());
                 $this->getConfig()->setData('license', $this->getLicense());
                 $this->getConfig()->setData('license_uri', $this->getLicenseUri());
@@ -246,6 +247,16 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
     public function getDescription()
     {
         return $this->getComposerJson()->description;
+    }
+
+    /**
+     * Get notes for the project.
+     *
+     * @return mixed
+     */
+    public function getNotes()
+    {
+        return $this->getComposerJson()->extra->magento_connect->notes;
     }
 
     /**

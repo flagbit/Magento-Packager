@@ -209,7 +209,7 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
      */
     public function getLicense()
     {
-        return $this->getComposerJson()->license;
+        return $this->getComposerJson()->extra->magento_connect->license;
     }
 
     /**

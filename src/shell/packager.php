@@ -57,8 +57,9 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
         if ($this->getArg('composer')) {
             try {
                 $this->_pathToComposerJson = $this->getArg('composer');
-                $name = $this->getModuleName();
-                $this->getConfig()->setData('name', $name);
+                $extension_name = $this->getExtensionName();
+                $package_name = $this->getPackageName();
+                $this->getConfig()->setData('name', $package_name);
                 $this->getConfig()->setData('channel', $this->getChannel());
                 $this->getConfig()->setData('license', $this->getLicense());
                 $this->getConfig()->setData('license_uri', $this->getLicenseUri());
@@ -134,9 +135,24 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
      *
      * @return string
      */
-    public function getModuleName()
+    public function getPackageName()
     {
-        $name = $this->getComposerJson()->extra->magento_connect->name;
+        $name = $this->getComposerJson()->extra->magento_connect->package_name;
+        if (!$name) {
+            $name = $this->getComposerJson()->name;
+            $name = join('_', array_map('ucfirst', explode('/', $name)));
+        }
+        return $name;
+    }
+
+    /**
+     * Parse module name out of composer module name file.
+     *
+     * @return string
+     */
+    public function getExtensionName()
+    {
+        $name = $this->getComposerJson()->extra->magento_connect->extension_name;
         if (!$name) {
             $name = $this->getComposerJson()->name;
             $name = join('_', array_map('ucfirst', explode('/', $name)));

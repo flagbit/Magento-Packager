@@ -165,7 +165,7 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
         foreach ($this->getComposerJson()->authors as $author) {
             $authors["name"][$author->name] = $author->name;
             $authors["email"][$author->name] = $author->email;
-            $authors["user"][$author->name] = strstr(str_replace('.', '_', $author->email), '@', true);
+            $authors["user"][$author->name] = $author->user ? $author->user : strstr(str_replace('.', '_', $author->email), '@', true);
         }
         return $authors;
     }

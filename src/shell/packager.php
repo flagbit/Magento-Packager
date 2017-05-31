@@ -65,7 +65,7 @@ class Mage_Shell_Packager extends Mage_Shell_Abstract
                 $this->getConfig()->setData('license_uri', $this->getLicenseUri());
                 $this->getConfig()->setData('summary', $this->getSummary());
                 $this->getConfig()->setData('description', $this->getDescription());
-                $this->getConfig()->setData('version', (string)Mage::getConfig()->getNode()->modules->$name->version);
+                $this->getConfig()->setData('version', (string)Mage::getConfig()->getNode()->modules->$extension_name->version);
                 $this->getConfig()->setData('stability', $this->getStability());
                 $this->getConfig()->setData('authors', $this->getAuthors());
                 $this->getConfig()->setData('depends_php_min', $this->getPhpMin());
